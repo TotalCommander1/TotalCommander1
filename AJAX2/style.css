@@ -1,0 +1,149 @@
+body {
+	background: url(img/wall.jpg);
+}
+
+#main{ 
+	margin:0px auto; 
+	border:2px solid black; 
+	width:996px; 
+	box-shadow:0px 0px 30px #000000; 
+}
+
+#top{
+	position:relative; 
+	background:url(img/header.jpg); 
+	background-repeat:no-repeat; 
+	width:100%; 
+	height:250px; 
+}
+
+#content{ 
+	position:relative; 
+	background:#f0f0f0; 
+	width:100%; 
+	box-shadow:0px 15px 15px #000000; 
+}
+
+/*верхня частина магазину*/ 
+/*кнопки меню магазину*/ 
+#k1{/*кнопка 'про магазин'*/
+	cursor:pointer; 
+	position:absolute; 
+	top:20px; 
+	right:360px; 
+	width:150px; 
+	height:40px; 
+	background:url(img/k1.png); 
+	background-repeat:no-repeat; 
+	border:1px solid white; 
+}
+
+#k1:hover{ 
+	background:url(img/k2.png); 
+	background-repeat:no-repeat; 
+}
+
+#k2{/*кнопка 'правила'*/ 
+	cursor:pointer; 
+	position:absolute; 
+	top:20px; 
+	right:190px; 
+	width:150px; 
+	height:40px; 
+	background:url(img/k3.png); 
+	background-repeat:no-repeat; 
+	border:1px solid white; 
+}
+ 
+#k2:hover{ 
+	background:url(img/k4.png); 
+	background-repeat:no-repeat; 
+}
+
+#k3{/*кнопка 'контакти'*/ 
+	cursor:pointer; 
+	position:absolute; 
+	top:20px; 
+	right:20px; 
+	width:150px; 
+	height:40px; 
+	background:url(img/k5.png); 
+	background-repeat:no-repeat; 
+	border:1px solid white; 
+}
+
+#k3:hover{
+	background:url(img/k6.png); 
+	background-repeat:no-repeat; 
+}
+
+#korz{
+	cursor:pointer; 
+	position:absolute; 
+	bottom:20px; 
+	right:20px; 
+	width:72px; 
+	height:72px; 
+	background:url(img/ks.png); 
+	background-repeat:no-repeat; 
+}
+
+#vybr_tov {
+	color: blue;
+	position: absolute;
+	bottom: 40px;
+	right: 89px;
+	background: #fff;
+	height: 30px;
+	line-height: 30px;
+	font-weight: bold;
+	border-radius: 3px;
+}
+
+#vybr_tov_num {
+	color: red;
+}
+
+table {
+	background: #cbe4a5;
+	padding: 30px;
+}
+
+table td img {
+	width: 150px;
+	border: 5px solid green;
+	padding: 20px;
+}
+
+table td input {
+	width: 20px;
+	height: 20px;
+	box-shadow: 0px 0px 20px blue;
+	border: 0;
+}
+
+table td input:hover {
+	box-shadow: 0px 0px 20px green;
+}
+
+table td input:checked {
+	box-shadow: 0px 0px 20px green;
+}
+
+.name_tovar {
+	color: blue;
+}
+
+.help_tovar {
+	font: bold 17px Times New Roman;
+    color: grey;
+}
+
+.price_tovar {
+	font: bold 14px tahoma;
+    color: red;
+}
+
+.modal {
+	display: none;
+}

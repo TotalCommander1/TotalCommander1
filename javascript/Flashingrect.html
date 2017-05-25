@@ -1,0 +1,34 @@
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script type="text/javascript">
+// Мигаючий квадрат
+function drawFlashingrect() { 
+var i = 0; 
+var id = document.getElementById ("negr"); 
+var ctx = id.getContext('2d'); 
+if (i < 3){ 
+setInterval(function(){ 
+var red=parseInt(Math.random()*255);
+var green=parseInt(Math.random()*255);
+var blue=parseInt(Math.random()*255);
+console.log(red,green,blue);
+ctx.fillStyle="rgb("+red+","+green+","+blue+")";
+ctx.fillRect(10,10,100,100);
+i++; 
+},2000) 
+} 
+}
+</script>
+</head>
+<body onload = "drawFlashingrect()"  BACKGROUND="Images,CSS/Klitinka.jpg">
+ <a href="index.html">Індекс</a><p>
+<canvas  id="negr" width='800' height='500'> 
+</canvas>
+</body>
+</html>

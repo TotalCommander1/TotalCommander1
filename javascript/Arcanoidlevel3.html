@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+body {
+	background: #4d7da4;
+}
+canvas {
+	border: 1px solid #000;
+	background: #fff;
+	margin:80px 250px;
+	display: block;
+}
+</style>
+<script>
+window.onload = drawArcanoid; 
+let ctx; 
+let width = 800; 
+let height = 550; 
+let pad ={
+	x:width/2-60,
+	y:height-20,
+	w:120,
+	h:20	
+}
+let bricks = [];
+let colors = ['#9d9d9d', '#f80207', '#feff01', '#0072ff', '#fc01fc', '#03fe03'];
+let ball = {
+	x:width/2,
+	y:height-pad.h-20,
+	r:10,
+	dx:0.5,
+	dy:-7
+}
+let keyRight = false;
+let keyLeft = false;
+let ballStart;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+let gamePoints = 0;
+let gameTimer = 0;
+let gameSounds = [];
+let iTimer;
+function startLoad() { 	
+	let padImage = img = new Image();
+	padImage.src = "Images,CSS/Arcade.jpg";
+	pad.img = padImage;
+	padImage.onload = function(){
+		ctx.drawImage(pad.img, pad.x, pad.y);
+}
+let row = 6;
+let col = 8;
+let brickSet = true;
+let brickWidth = width / col - 2;
+let brickHeight = 20;
+	for (let i = 0; i<col; i++){
+		brickX = i * (brickWidth + 2) +1;
+		for (let j = 0; j< row; j++){
+			brickY = j * (brickHeight + 2) +1;
+			brickColor = colors[ j ];
+			bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, colors:brickColor, set:brickSet});
+		}
+	}
+}
+function drawCanvas() {
+clear();
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+bricks.forEach( function(item){
+	ctx.fillStyle = item.colors;
+	ctx.beginPath(); 
+	ctx.rect(item.x,item.y,item.width, item.height); 
+	ctx.closePath();
+	if(item.set) ctx.fill(); 
+	if(ball.y < item.y + item.height && ball.y > item.y && ball.x < item.x + item.width && ball.x > item.x && item.set){
+		item.set = false;
+		ball.dy = - ball.dy;
+		setRect = false;
+		gamePoints++;
+		if( gamePoints >= 8*6) {
+			clearInterval(ballStart);
+			clear();
+			ctx.font = '42px Verdana';
+			ctx.fillStyle = '#fff';
+			ctx.textAligh = 'center';
+			ctx.fillText('GAME OVER! Congratulations!', 400, 275);
+		}
+	}
+})
+	if(keyRight){
+		if( (pad.x + 10) <= (width - pad.w) ){
+			pad.x += 10;
+		}else{
+			pad.x = width - pad.w;
+		}
+	}
+	if(keyLeft){
+		if( (pad.x - 10) >= 0 ){
+			pad.x -= 10;
+		}else{
+			pad.x = 0;
+		}
+	}
+	ctx.drawImage(pad.img,pad.x,pad.y);
+	ball.x += ball.dx;
+	ball.y += ball.dy;
+	if( (ball.x + ball.dx + ball.r) > width || (ball.x + ball.dx - ball.r) < 0){
+		ball.dx = - ball.dx;
+	}
+	if ( (ball.y + ball.dy - ball.r) < 0){
+		ball.dy = - ball.dy;
+	}else if (ball.y + ball.dy + ball.r > height - pad.h){
+		if(ball.x > pad.x && ball.x < pad.x + pad.w){
+			ball.dx = 10 * ((ball.x-(pad.x + pad.w/2)) / pad.w);
+				ball.dy = - ball.dy;
+		}else if (ball.y + ball.dy + ball.r > height){
+			clearInterval(ballStart);
+		}
+	}
+}
+function drawArcanoid() {
+	ctx = document.getElementById('canvas').getContext('2d');
+	startLoad();
+	clear();
+	document.getElementById('canvas').addEventListener('mousemove', function(e){
+		let x = e.clientX;
+		window.canvasCoord = document.getElementById('canvas').getBoundingClientRect();
+		let mouseX = x - canvasCoord.left;
+		if(mouseX > (pad.w/2)){
+			if(mouseX < (width - pad.w/2)){
+				pad.x = mouseX-pad.w/2;
+			}else{
+				pad.x = width - pad.w;
+			}
+		}else{
+			pad.x = 0;
+		}
+	});
+document.onkeydown = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = true;
+		}
+		break;
+		case 39:{
+			keyRight = true;
+		}
+		break;
+}
+}
+document.onkeyup = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = false;
+		}
+		break;
+		case 39:{
+			keyRight = false;
+		}
+		break;
+}
+}
+ballStart = setInterval(drawCanvas,20);
+}
+</script>
+</head>
+<body>
+<a href="index.html">Індекс</a><p> 
+<canvas id="canvas" width="800" height="550">		
+</canvas>
+</body>
+</html>

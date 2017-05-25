@@ -1,0 +1,288 @@
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+body{ 
+background-color:#696969; 
+} 
+#canvas{ 
+display:block; 
+background-color:#555; 
+margin:30px auto; 
+border:1px solid blue; 
+}
+</style>
+<script type="text/javascript">
+window.onload = drawStalker; 
+let canvas,ctx; 
+let width = 720; 
+let height = 480; 
+let keyRight = false;
+let keyLeft = false;
+let keyUp = false;
+let keyDown = false;
+let keySpace = false;
+let lastFire;
+let startLoad = 0;
+let endLoad = 0;
+let objectImage, bgImage;
+let bg;
+let player = {};
+let playerSpeed = 0.2;
+let bullet = [];
+let bulletSpeed = 0.5;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+function startLoadData() { 
+	startLoad++;
+	objectImage = img = new Image();
+	objectImage.src = "Images,CSS/sprites.png";
+	objectImage.onload = function(){
+		endLoadData();
+	}
+	startLoad++;
+	bgImage = img = new Image();
+	bgImage.src = "Images,CSS/Sky.jpg";
+	bgImage.onload = function(){
+		endLoadData();
+	}
+	player = {
+		x:10,
+		y:279,
+		w:39,
+		h:39,
+		row:0,
+		col:0,
+		count:2,
+		action:0
+	};
+} 
+function endLoadData (){
+	endLoad++;
+	if(startLoad == endLoad){
+		start();
+	}
+}
+function start(){
+	bg = ctx.createPattern(bgImage, 'repeat');
+	lastTime = Date.now();
+	lastFire = Date.now();
+	main();
+}
+function main() {
+	clear();
+	times = Date.now();
+	dt = times - lastTime;
+	ctx.fillStyle = bg; 
+	ctx.fillRect(0, 0, width, height);
+	setKey(dt);
+	drawPlayer(dt);
+	//drawBullet(dt);
+	lastTime = times;
+	requestAnimFrame(main);
+}
+function setKey (dt){
+	if(keyLeft){
+		player.x -= playerSpeed * dt;
+		if(player.x < 0){
+			player.x = 0;
+		}
+	}
+	if(keyRight){
+		player.x += playerSpeed * dt;
+		if(player.x > (width - player.w)){
+			player.x = width - player.w;
+		}
+	}
+	if(keyUp){
+		player.y -= playerSpeed * dt;
+		if(player.y < 0){
+			player.y = 0;
+		}
+	}
+	if(keyDown){
+		player.y += playerSpeed * dt;
+		if(player.y > (height - player.h)){
+			player.y = height - player.h;
+		}
+	}
+	if(keySpace){
+		if(Data.now(0 - lastFire) > 100){
+			let x = player.x + player.w / 2;
+			let y = player.y + player.h / 2;
+
+			bullet.push({x:x, y:y, type: 'forward', row: 39, col: 0, w:18, h: 8});
+			bullet.push({x:x, y:y, type: 'up', row: 50, col: 0, w:9, h: 5});
+			bullet.push({x:x, y:y, type: 'down', row: 60, col: 0, w:9, h: 5});
+
+			lastFire = Data.now();
+		}
+	}
+}
+function drawPlayer(dt){
+	player.action += 1;
+	if(player.action == player.count){
+		player.action = 0;
+	}
+	ctx.drawImage(objectImage, (player.action * player.col), player.row, player.w, player.h,
+		player.x, player.y, player.w, player.h);
+}
+var requestAnimFrame = (function(){
+	return window.requestAnimFrame ||
+			window.webkitrequestAnimFrame ||
+			window.mozrequestAnimFrame ||
+			window.orequestAnimFrame ||
+			window.msrequestAnimFrame || function(callback){
+										window.setTimeout(callback, 1000/60);
+										};
+})();
+function drawCanvas() {
+clear();
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+bricks.forEach( function(item){
+	ctx.fillStyle = item.colors;
+	ctx.beginPath(); 
+	ctx.rect(item.x,item.y,item.width, item.height); 
+	ctx.closePath();
+	if(item.set) ctx.fill(); 
+	if(ball.y < item.y + item.height && ball.y > item.y && ball.x < item.x + item.width && ball.x > item.x && item.set){
+		item.set = false;
+		ball.dy = - ball.dy;
+		setRect = false;
+		gamePoints++;
+		console.log(gamePoints);
+		if( gamePoints >= player.col*row) {
+			clearInterval(ballStart);
+			clear();
+			ctx.font = '42px Verdana';
+			ctx.fillStyle = 'black';
+			ctx.textAligh = 'center';
+			ctx.fillText('GAME OVER! Congratulations!', 400, 275);
+		}
+	}
+})
+	if(keyRight){
+		if( (pad.x + 10) <= (width - pad.w) ){
+			pad.x += 10;
+		}else{
+			pad.x = width - pad.w;
+		}
+	}
+	if(keyLeft){
+		if( (pad.x - 10) >= 0 ){
+			pad.x -= 10;
+		}else{
+			pad.x = 0;
+		}
+	}
+	ctx.drawImage(pad.img,pad.x,pad.y);
+	ball.x += ball.dx;
+	ball.y += ball.dy;
+	if( (ball.x + ball.dx + ball.r) > width || (ball.x + ball.dx - ball.r) < 0){
+		ball.dx = - ball.dx;
+	}
+	if ( (ball.y + ball.dy - ball.r) < 0){
+		ball.dy = - ball.dy;
+	}else if (ball.y + ball.dy + ball.r > height - pad.h){
+		if(ball.x > pad.x && ball.x < pad.x + pad.w){
+			ball.dx = 10 * ((ball.x-(pad.x + pad.w/2)) / pad.w);
+				ball.dy = - ball.dy;
+		}else if (ball.y + ball.dy + ball.r > height){
+			clearInterval(ballStart);
+		}
+		ctx.font = '16px Verdana';
+		ctx.fillStyle = "black";
+		let gameMin;
+		let gameSec;
+		gameMin = Math.floor(gameTimer/60);
+			gameSec = gameTimer % 60;
+			if (gameMin < 10) gameMin = "0" + gameMin;
+			if (gameSec < 10) gameSec = "0" + gameSec;
+		ctx.fillText('Time: '+ gameMin + ':' + gameSec, 600, 470);
+		ctx.fillText('Points: ' + gamePoints, 600, 500);
+	}
+function countTimer() {
+	gameTimer++;
+}
+}
+let brickSet = true;
+	let brickWidth = width / player.col - 2;
+	let brickHeight = 20;
+	for (let i = 0; i<player.col; i++){
+		brickX = i * (brickWidth + 2) +1;
+		for (let j = 0; j< row; j++){
+			brickY = j * (brickHeight + 2) +1;
+			brickColor = colors[ j ];
+			bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, colors:brickColor, set:brickSet});
+		}
+	}
+function drawStalker() {
+	ctx = document.getElementById('canvas').getContext('2d');
+	startLoadData();
+document.onkeydown = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = true;
+		}
+		break;
+		case 38:{
+			keyUp = true;
+		}
+		break;
+		case 39:{
+			keyRight = true;
+		}
+		break;
+		case 40:{
+			keyDown = true;
+		}
+		break;
+		case 32:{
+			keySpace = true;
+		}
+		break;
+}
+}
+document.onkeyup = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = false;
+		}
+		break;
+		case 38:{
+			keyUp = false;
+		}
+		break;
+		case 39:{
+			keyRight = false;
+		}
+		break;
+		case 40:{
+			keyDown = false;
+		}
+		break;
+		case 32:{
+			keySpace = false;
+		}
+		break;
+}
+}
+}
+</script>
+</head>
+<body BACKGROUND="Images,CSS/Klitinka.jpg">
+ <a href="index.html">²νδεκρ</a><p>
+<canvas  id="canvas" width='720' height='480'> 
+</canvas>
+</body>
+</html>

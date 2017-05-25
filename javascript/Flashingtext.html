@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script type="text/javascript">
+// Мигаючий текст
+function drawFlashingtext() { 
+var i = 0; 
+var id = document.getElementById ("negr"); 
+var ctx = id.getContext('2d'); 
+if (i < 3){ 
+setInterval(function(){ 
+var x = Math.random()*id.width-200; 
+var y = Math.random()*id.height-100; 
+var red=parseInt(Math.random()*255);
+var green=parseInt(Math.random()*255);
+var blue=parseInt(Math.random()*255);
+console.log(red,green,blue);
+ctx.fillStyle="rgb("+red+","+green+","+blue+")";
+ctx.font = "bold 42px sans-serif" ; 
+ctx.clearRect(0,0,id.width,id.height); 
+ctx.fillText("CHECKTEXT",x,y); 
+i++; 
+},500) 
+} 
+} 
+</script>
+</head>
+<body onload = "drawFlashingtext()" BACKGROUND="Images,CSS/Klitinka.jpg">
+ <a href="index.html">Індекс</a><p>
+<canvas  id="negr" width='800' height='500'> 
+</canvas>
+</body>
+</html>

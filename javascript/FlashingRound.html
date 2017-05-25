@@ -1,0 +1,53 @@
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script type="text/javascript">
+//Мигаюче коло
+window.onload = setInterval(function(){ 
+clear(); 
+drawFlashingRound(); 
+},500); 
+var circle ={
+x:300, 
+y:200, 
+r:30, 
+a:false 
+} 
+function drawFlashingRound(){ 
+ctx=document.getElementById ("negr").getContext("2d"); 
+if(circle.a){ 
+ctx.fillStyle="red"; 
+ctx.beginPath(); 
+ctx.arc(circle.x,circle.y,circle.r,0,Math.PI*2); 
+ctx.fill(); 
+}else{ 
+ctx.fillStyle="green"; 
+ctx.beginPath(); 
+ctx.arc(circle.x,circle.y,circle.r+20,0,Math.PI*2); 
+ctx.fill(); 
+} 
+circle.a = !circle.a;
+}
+function Coord(e) { 
+var x = e.clientX; 
+var y = e.clientY; 
+console.log('client x-',x);
+console.log('client y-',y);
+} 
+function clear() { 
+var ctx = document.getElementById('negr').getContext('2d'); 
+ctx.clearRect(0,0,800,500); 
+}
+</script>
+</head>
+<body onload = "drawFlashingRound()"  BACKGROUND="Images,CSS/Klitinka.jpg">
+ <a href="index.html">Індекс</a><p>
+<canvas  id="negr" width='800' height='500'>
+</canvas>
+</body>
+</html>

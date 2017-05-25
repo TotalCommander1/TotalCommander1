@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+	background: #4d7da4;
+}
+negr{
+	border: 1px solid #000;
+	background: #fff;
+	margin:80px 100px;
+	display: block;
+}
+</style>
+	<script type="text/javascript">
+window.onload = drawLawa;
+let negr,ctx;
+const width = 1150;
+const height = 600;
+let bgImage;
+let bgMoveX = 528;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+function startLoad() {
+	bgImage = new Image();
+	bgImage.src = "Images,CSS/lawa.jpg";
+}	
+function drawCanvas() {
+	clear();
+	bgMoveX -= 4;
+	if(bgMoveX <= 0){
+		bgMoveX	= 640;
+	}
+	ctx.drawImage(bgImage,0+bgMoveX,0,490,475,0,0,width,height);
+}
+function drawLawa() {
+	ctx = document.getElementById('negr').getContext('2d');
+	startLoad();
+	drawCanvas();
+	setInterval(drawCanvas,70);
+}
+</script>
+</head>
+<body>
+	 <a href="index.html">Індекс</a><p>
+	<canvas id="negr" width="1150" height="600">
+	</canvas>
+</body>
+</html>

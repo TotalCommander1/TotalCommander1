@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script type="text/javascript">
+// Коло
+function drawRound(){
+var canvas= document.getElementById ("negr"); 
+var ctx = canvas.getContext('2d'); 
+ctx.beginPath(); 
+ctx.arc(250,250,245,0,Math.PI*2); 
+ctx.lineWidth=10;
+ctx.stroke();}
+</script>
+</head>
+<body onload = "drawRound()"  BACKGROUND="Images,CSS/Klitinka.jpg">
+ <a href="index.html">Індекс</a><p>
+<canvas  id="negr" width='500' height='500'> 
+</canvas>
+</body>
+</html>

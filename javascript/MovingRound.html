@@ -1,0 +1,39 @@
+<html> 
+<head> 
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script> 
+var id=setInterval(
+function MovingRound() { 
+var ctx = document.getElementById('negr').getContext('2d'); 
+function clear(){ 
+ ctx.clearRect(0,0,600,600);
+ }  
+ clear()
+for(i=1;i<4;i++){ 
+var x = parseInt(Math.random() * 600); 
+var y = parseInt(Math.random() * 600); 
+var red = parseInt(Math.random() * 255); 
+var green = parseInt(Math.random() * 255); 
+var blue = parseInt(Math.random() * 255); 
+ctx.fillStyle = "rgb("+ red +","+ blue +","+ green +")"; 
+ctx.beginPath(); 
+ctx.arc(x,y,80,0,Math.PI*2); 
+ctx.closePath(); 
+ctx.fill(); 
+} 
+} 
+, 2000); 
+</script> 
+</head> 
+<body onload= "MovingRound()" BACKGROUND="Images,CSS/Klitinka.jpg"> 
+ <a href="index.html">Індекс</a><p>
+<canvas id = "negr" width = "600" height = "600" > 
+</canvas> 
+
+</body> 
+</html>

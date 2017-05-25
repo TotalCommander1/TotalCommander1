@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html> 
+<html> 
+<head> 
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style> 
+body{ 
+background-color:#696969; 
+} 
+#canvas{ 
+display:block; 
+background-color:#555; 
+margin:30px auto; 
+border:1px solid blue; 
+}
+</style> 
+<script type="text/javascript"> 
+window.onload = drawArcanoid; 
+let canvas, ctx; 
+let width = 800; 
+let height = 550; 
+var Pad = { 
+x: width/2-60, 
+y: height-20, 
+w: 120, 
+h: 20, 
+}; 
+var Ball = { 
+x: width/2, 
+y: height-Pad.h-20, 
+r: 10 
+}; 
+var Bricks = []; 
+var colors = ['#9d9d9d','#f80207','#feff01','#0072ff','#fc01fc','#03f303']; 
+function drawCanvas(){ 
+clear(); 
+ctx.fillStyle='#f66'; 
+ctx.beginPath(); 
+ctx.arc(400,510,10,0,Math.PI*2); 
+ctx.closePath(); 
+ctx.fill(); 
+var img=new Image(); 
+img.src="Images,CSS/Arcade.jpg"; 
+img.onload= function(){ 
+ctx.drawImage(Pad.img,Pad.x,Pad.y); 
+}; 
+Bricks.forEach(function(item){ 
+ctx.fillStyle = item.color; 
+ctx.beginPath(); 
+ctx.rect(item.x, item.y, item.width, item.height); 
+ctx.closePath(); 
+ctx.fill(); 
+}); 
+} 
+function clear(){ 
+ctx.clearRect(0,0,800,550); 
+} 
+function startLoad () { 
+var padImage = new Image (); 
+padImage.src = "Images,CSS/Arcade.jpg"; 
+Pad.img = padImage; 
+padImage.onload = function () { 
+ctx.drawImage(Pad.img, Pad.x, Pad.y); 
+} 
+} 
+brickWidth = width/8-2; 
+brickHeight = 20; 
+for (var i = 0; i < 8; i++){ 
+brickX = i * ( brickWidth + 2) + 1; 
+for (var j = 0; j < 5; j++){ 
+brickY = j * (brickHeight + 2) + 1; 
+brickColor = colors [ j ]; 
+Bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, color:brickColor}); 
+} 
+} 
+function drawArcanoid(){ 
+ctx = document.getElementById('canvas').getContext('2d'); 
+startLoad(); 
+drawCanvas(); 
+} 
+</script> 
+</head> 
+<body> 
+<a href="index.html">Індекс</a><p> 
+<canvas id="canvas" width="800" height="550"> 
+</canvas> 
+</body> 
+</html>

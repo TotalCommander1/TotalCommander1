@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+body{ 
+background-color:#696969; 
+} 
+#canvas{ 
+display:block; 
+background-color:#555; 
+margin:30px auto; 
+border:1px solid blue; 
+}
+</style>
+<script type="text/javascript">
+krok=3; 
+let canvas, ctx; 
+const width = 600; 
+const height = 400; 
+let object = { 
+coordX: 280, 
+coordY: 120, 
+width: 20, 
+height: 20, 
+color: "rgba(255,255,25,1)" 
+} 
+function clear() { 
+ctx.clearRect(0, 0, width, height); 
+} 
+function drawCanvas() { 
+clear(); 
+ctx.beginPath; 
+ctx.fillStyle = object.color; 
+ctx.fillRect(object.coordX, object.coordY, object.width, object.height); 
+ctx.closePath(); 
+ctx.fill(); 
+} 
+function drawMovingRect() { 
+ctx = document.getElementById('canvas').getContext('2d'); 
+drawCanvas(); 
+let minX = 0; 
+let maxX = width - object.width; 
+let minY = 0; 
+let maxY = height - object.height; 
+document.onkeydown = function(e){ 
+console.log("keyCode -" + e.keyCode); 
+switch(e.keyCode){ 
+case 38: 
+if((object.coordY - krok) > minY){ 
+object.coordY = object.coordY - krok; 
+}else{ 
+object.coordY = minY; 
+} 
+break; 
+case 40: 
+if((object.coordY + krok) < maxY){ 
+object.coordY = object.coordY + krok; 
+}else{ 
+object.coordY = maxY; 
+} 
+break; 
+case 37: 
+if((object.coordX - krok) > minX){ 
+object.coordX = object.coordX - krok; 
+}else{ 
+object.coordX = minX; 
+} 
+break; 
+case 39: 
+if((object.coordX + krok) < maxX){ 
+object.coordX = object.coordX + krok; 
+}else{ 
+object.coordX = maxX; 
+} 
+break; 
+} 
+} 
+setInterval(drawCanvas,30); 
+}
+</script>
+</head>
+<body  onload = "drawMovingRect()">
+	 <a href="index.html">Індекс</a><p>
+	<canvas id="canvas" width="800" height="550">	
+	</canvas>
+</body>
+</html>

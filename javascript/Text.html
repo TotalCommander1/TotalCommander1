@@ -1,0 +1,29 @@
+﻿<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script type="text/javascript">
+// Текст
+function drawText() { 
+var canvas = document.getElementById ("negr"); 
+if (canvas.getContext) { 
+var ctx =canvas.getContext ("2d"); 
+ctx.font="bold 42px impact";
+ctx.fillStyle = "rgba(145,255,35, 1.0)"; 
+ctx.font = "bold 42px sans-serif"; 
+ctx.textBaseline="middle" 
+ctx.fillText ("CHECKTEXT",300,200); 
+} 
+}
+</script>
+</head>
+<body onload = "drawText()"  BACKGROUND="Images,CSS/Klitinka.jpg">
+ <a href="index.html">Індекс</a><p>
+<canvas  id="negr" width='800' height='500'> 
+</canvas>
+</body>
+</html>

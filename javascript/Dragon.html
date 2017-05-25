@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+body {
+	background: #4d7da4;
+}
+negr {
+	border: 1px solid #000;
+	background: #fff;
+	margin:80px 100px;
+	display: block;
+}
+</style>
+	<script type="text/javascript">
+window.onload = drawDragon;
+let I=20
+let canvas,ctx;
+const width = 1150;
+const height = 600;
+let bgImage;
+let bgMoveX = 528;
+let dracon = {};
+let mouseMoveX = 300;
+let mouseMoveY = 500;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+function startLoad() {
+		bgImage = new Image();
+	bgImage.src = "Images,CSS/lawa.jpg";
+	var img = new Image();
+	img.src = "Images,CSS/dragon.gif";
+	dracon.images = img;
+	//dracon.action = 0;
+	dracon.x = 500;
+	dracon.y = 300;
+	dracon.width = 75;
+	dracon.height = 70;
+	dracon.row = 4;
+	dracon.col = 1;
+	//dracon.count = 10;
+}
+function drawCanvas() {
+	clear();
+		bgMoveX -= 4;
+	if(bgMoveX <= 0){
+		bgMoveX	= 640;
+	}
+	ctx.drawImage(bgImage,0+bgMoveX,0,490,475,0,0,width,height);
+	if(mouseMoveX > dracon.x){ // Повертаю дракона за мишкою
+		dracon.x += 5;
+	}
+	if(mouseMoveY > dracon.y){ // Повертаю дракона за мишкою
+		dracon.y += 5;
+	}
+	if(mouseMoveX < dracon.x){ // Повертаю дракона за мишкою      
+		dracon.x -= 5;
+	}
+	if(mouseMoveY < dracon.y){ // Повертаю дракона за мишкою 
+		dracon.y -= 5;
+	}
+	dracon.col++;
+	if(dracon.col >= 9) {
+		dracon.col = 0;
+	}
+	ctx.drawImage(dracon.images,
+	(dracon.col * dracon.width),
+	(dracon.row * dracon.height),
+	dracon.width,dracon.height,
+	(dracon.x - dracon.width /2),
+	(dracon.y - dracon.height/2),
+	dracon.width,dracon.height);	
+}
+function drawDragon() {
+	ctx = document.getElementById('negr').getContext('2d');
+	startLoad();
+	drawCanvas();
+	window.canvasCoord = document.getElementById('negr').getBoundingClientRect();
+	document.getElementById('negr').addEventListener('mousemove', (event) => { 
+			let x = event.clientX;
+			let y = event.clientY;
+			let mouseX = x - canvasCoord.left;
+			let mouseY = y - canvasCoord.top;
+			mouseMoveX = mouseX; // Повертаю дракона за мишкою
+			mouseMoveY = mouseY; // Повертаю дракона за мишкою
+			if(mouseX > dracon.x && Math.abs(mouseY - dracon.y) < dracon.width / 2){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 0;
+			}else if(mouseX < dracon.x && Math.abs(mouseY - dracon.y) < dracon.width / 2){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 4;
+			}else if(mouseY > dracon.y && Math.abs(mouseX - dracon.x) < dracon.width / 2){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 2;	
+			}else if(mouseY < dracon.y && Math.abs(mouseX - dracon.x) < dracon.width / 2){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 6;
+			}else if(mouseY < dracon.y && mouseX < dracon.x){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 5;
+			}else if(mouseY < dracon.y && mouseX > dracon.x){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 7;
+			}else if(mouseY > dracon.y && mouseX < dracon.x){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 3
+			}else if(mouseY > dracon.y && mouseX > dracon.x){ // Дракон літає за 1 напрямком мишки
+				dracon.row = 1;		
+			}
+		});
+setInterval(drawCanvas,I);
+}
+</script>
+</head>
+<body>
+	 <a href="index.html">Індекс</a><p>
+	<canvas id="negr" width="1150" height="600">	
+	</canvas>
+</body>
+</html>

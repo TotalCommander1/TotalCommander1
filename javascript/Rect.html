@@ -1,0 +1,24 @@
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script type="text/javascript">
+//  вадрат
+function drawRect(){
+var canvas=document.getElementById("negr");
+var ctx=canvas.getContext("2d");
+ctx.fillStyle="rgb(0,0,99,1)";
+ctx.fillRect(10,10,100,100);
+}
+</script>
+</head>
+<body onload = "drawRect()"  BACKGROUND="Images,CSS/Klitinka.jpg">
+ <a href="index.html">≤ндекс</a><p>
+<canvas  id="negr" width='800' height='500'> 
+</canvas>
+</body>
+</html>

@@ -1,0 +1,91 @@
+#main{ 
+margin:0px auto; 
+border:2px solid black; 
+width:996px; 
+box-shadow:0px 0px 30px #000000; 
+} 
+#top{ 
+position:relative; 
+background:url(img/header.jpg); 
+background-repeat:no-repeat; 
+width:100%; 
+height:250px; 
+border:1px solid red; 
+} 
+#fon_tovar{ 
+position:relative; 
+background:#f0f0f0; 
+width:100%; 
+box-shadow:0px 15px 15px #000000; 
+} 
+/*верхня частина магазину*/ 
+/*кнопки меню магазину*/ 
+#k1{/*кнопка 'про магазин'*/
+cursor:pointer; 
+position:absolute; 
+top:20px; 
+right:360px; 
+width:150px; 
+height:40px; 
+background:url(img/k1.png); 
+background-repeat:no-repeat; 
+border:1px solid white; 
+} 
+#k1:hover{ 
+background:url(img/k2.png); 
+background-repeat:no-repeat; 
+} 
+#k2{/*кнопка 'правила'*/ 
+cursor:pointer; 
+position:absolute; 
+top:20px; 
+right:190px; 
+width:150px; 
+height:40px; 
+background:url(img/k3.png); 
+background-repeat:no-repeat; 
+border:1px solid white; 
+} 
+#k2:hover{ 
+background:url(img/k4.png); 
+background-repeat:no-repeat; 
+} 
+#k3{/*кнопка 'контакти'*/ 
+cursor:pointer; 
+position:absolute; 
+top:20px; 
+right:20px; 
+width:150px; 
+height:40px; 
+background:url(img/k5.png); 
+background-repeat:no-repeat; 
+border:1px solid white; 
+} 
+#k3:hover{ 
+background:url(img/k6.png); 
+background-repeat:no-repeat; 
+}
+#ks{
+cursor:pointer; 
+position:absolute; 
+top:150px; 
+right:20px; 
+width:72px; 
+height:72px; 
+background:url(img/ks.png); 
+background-repeat:no-repeat; 
+} 
+#vt{
+position:absolute; 
+bottom:42px; 
+right:85px; 
+width:150px; 
+height:20px; 
+background-repeat:no-repeat; 
+padding:7px;
+background:url(img/vt.png);
+} 
+#SelectTovar{
+font:bold 13px Tahoma;
+color:blue;
+}

@@ -1,0 +1,49 @@
+﻿<html>
+<head>
+<style>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">  
+#negr{
+border:1px solid red;
+}
+</style>
+<script type="text/javascript">
+window.onload = drawHuman;
+let canvas,ctx; 
+const width=600; 
+const height=400; 
+let cholovichok= {}; 
+function clear(){ 
+ctx.clearRect(0,0,width,height); 
+} 
+function startLoad() { 
+var img = new Image(); 
+img.src = "Images,CSS/chelovek.jpg"; 
+cholovichok.images=img; 
+cholovichok.action=0; 
+cholovichok.width=100; 
+cholovichok.height=100; 
+cholovichok.count=5; 
+}
+function drawCanvas() { 
+clear(); 
+ctx.drawImage(cholovichok.images,0,(cholovichok.action*cholovichok.height),cholovichok.width,cholovichok.height, 
+250,100,cholovichok.width,cholovichok.height); 
+cholovichok.action++; 
+if(cholovichok.action==cholovichok.count){ 
+cholovichok.action=0; 
+} 
+} 
+function drawHuman(){ 
+ctx= document.getElementById('negr').getContext('2d'); 
+startLoad(); 
+drawCanvas(); 
+setInterval(drawCanvas,100);                                                                                                                                                                                                                                                                                        
+}
+</script>
+</head>
+<body BACKGROUND="Images,CSS/Klitinka.jpg">
+<a href="index.html">Індекс</a><p>
+<canvas  id="negr" width='800' height='500'>
+</canvas>
+</body>
+</html>

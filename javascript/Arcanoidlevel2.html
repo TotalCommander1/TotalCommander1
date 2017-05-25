@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html> 
+<html> 
+<head> 
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style> 
+body{ 
+background-color:#696969; 
+} 
+#canvas{ 
+display:block; 
+background-color:#555; 
+margin:30px auto; 
+border:1px solid blue; 
+}
+</style> 
+<script type="text/javascript">
+window.onload = start; 
+let ctx; 
+let width = 800; 
+let height = 550; 
+let Brickscount = 8;
+let Brickscountdown = 8;
+let pad ={ 
+x:width/2-60, 
+y:height-20, 
+w:120, 
+h:20, 
+}
+let ballStart;
+let keyRight = false; 
+let keyLeft = false; 
+var Bricks = []; 
+var colors = ['#9d9d9d','#f80207','#feff01','#0072ff','#fc01fc','#03f303','#049096','#585792']; 
+function clear() { 
+ctx.clearRect(0,0,width,height); 
+} 
+function drawCanvas() { 
+clear(); 
+if(keyRight){ 
+if( (pad.x + 10) <= (width - pad.w) ){ 
+pad.x += 10; 
+}else{ 
+pad.x = width - pad.w; 
+} 
+} 
+if(keyLeft){ 
+if( (pad.x - 10) >= 0 ){ 
+pad.x -= 10; 
+}else{ 
+pad.x = 0; 
+} 
+} 
+ctx.drawImage(pad.img,pad.x,pad.y); 
+Bricks.forEach(function(item){ 
+ctx.fillStyle = item.color; 
+ctx.beginPath(); 
+ctx.rect(item.x, item.y, item.width, item.height); 
+ctx.closePath(); 
+ctx.fill(); 
+}); 
+} 
+function startLoad() { 
+let padImage = img = new Image(); 
+padImage.src = "Images,CSS/Arcade.jpg"; 
+pad.img = padImage; 
+padImage.onload = function(){ 
+ctx.drawImage(pad.img, pad.x, pad.y); 
+} 
+} 
+brickWidth = width/Brickscount-2; 
+brickHeight = 20; 
+for (var i = 0; i < 8; i++){ 
+brickX = i * ( brickWidth + 2) + 1; 
+for (var j = 0; j < Brickscountdown; j++){ 
+brickY = j * (brickHeight + 2) + 1; 
+brickColor = colors [ j ]; 
+Bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, color:brickColor}); 
+} 
+} 
+function start() { 
+ctx = document.getElementById('canvas').getContext('2d'); 
+startLoad(); 
+clear(); 
+document.onkeydown = function(e){ 
+switch(e.keyCode){ 
+case 37:{ 
+keyLeft = true; 
+} 
+break; 
+case 39:{ 
+keyRight = true; 
+} 
+break; 
+} 
+} 
+document.onkeyup = function(e){ 
+switch(e.keyCode){ 
+case 37:{ 
+keyLeft = false; 
+} 
+break; 
+case 39:{ 
+keyRight = false; 
+} 
+break; 
+} 
+} 
+document.getElementById('canvas').addEventListener('mousemove', function(e){ 
+let x = e.clientX; 
+window.canvasCoord = document.getElementById('canvas').getBoundingClientRect(); 
+let mouseX = x - canvasCoord.left; 
+if(mouseX > (pad.w/2)){ 
+if(mouseX < (width - pad.w/2)){ 
+pad.x = mouseX-pad.w/2; 
+}else{ 
+pad.x = width - pad.w; 
+} 
+}else{ 
+pad.x = 0; 
+} 
+});
+setInterval(drawCanvas,10); 
+}
+</script> 
+</head> 
+<body> 
+<a href="index.html">Індекс</a><p> 
+<canvas id="canvas" width="800" height="550"> 
+</canvas> 
+</body> 
+</html>

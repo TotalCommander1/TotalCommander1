@@ -1,0 +1,107 @@
+<html> 
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<style>
+#negr{
+border:1px solid red;
+}
+</style>
+<script> 
+var kolo=[]; 
+function clear(){ 
+ctx.clearRect(0,0,600,600); 
+} 
+function possible() { 
+console.log('using possible'); 
+let count = Math.floor(Math.random()*8+1); 
+for( let i=0;i<count;i++){ 
+let red = parseInt(Math.random() * 255); 
+let green = parseInt(Math.random() * 255); 
+let blue = parseInt(Math.random() * 255); 
+let x = Math.floor(Math.random()*600); 
+let y = Math.floor(Math.random()*600); 
+kolo.push({ 
+coordX:x, 
+coordY:y, 
+radius:20, 
+color:'rgb('+ red +','+ blue +','+ green +')', 
+a:false 
+}); 
+} 
+for( let i=0;i<kolo.length;i++){ 
+console.log(kolo[i]); 
+} 
+} 
+function isMouseInCircle(mouseX,mouseY,circleItem){ 
+return Math.pow(mouseX-circleItem.coordX,2)+Math.pow(mouseY-circleItem.coordY,2) 
+<Math.pow(circleItem.radius,2) 
+} 
+function Coord(e) { 
+let x = e.pageX; 
+let y = e.pageY; 
+let aa =document.getElementById("negr").getBoundingClientRect(); 
+let mouseX = x-aa.left; 
+let mouseY = y-aa.top; 
+kolo.forEach(function(koloMas,index,kolo){ 
+if (Math.pow(mouseX-koloMas.coordX,2)+Math.pow(mouseY-koloMas.coordY,2) 
+<Math.pow(koloMas.radius,2)){ 
+koloMas.a=true; 
+} 
+else{koloMas.a=false; 
+} 
+}); 
+} 
+function drawKolo() { 
+console.log('used drawKolo'); 
+ctx=document.getElementById("negr").getContext('2d'); 
+clear(); 
+kolo.forEach(function(koloZnach,index,kolo){ 
+if(koloZnach.a){ 
+ctx.fillStyle=koloZnach.color; 
+ctx.beginPath(); 
+ctx.arc(koloZnach.coordX,koloZnach.coordY,koloZnach.radius+20,0,Math.PI*2,true); 
+ctx.closePath(); 
+ctx.fill(); 
+}else{ 
+ctx.fillStyle=koloZnach.color; 
+ctx.beginPath(); 
+ctx.arc(koloZnach.coordX,koloZnach.coordY,koloZnach.radius,0,Math.PI*2,true); 
+ctx.closePath(); 
+ctx.fill(); 
+}; 
+}) 
+}; 
+function Color(e){ 
+let x = e.pageX; 
+let y = e.pageY; 
+let aa = document.getElementById("negr").getBoundingClientRect(); 
+let mouseX = x-aa.left; 
+let mouseY = y-aa.top; 
+let red = parseInt(Math.random() * 255); 
+let green = parseInt(Math.random() * 255); 
+let blue = parseInt(Math.random() * 255); 
+kolo.forEach(function(circleItem){ 
+if(isMouseInCircle(mouseX,mouseY,circleItem)) { 
+circleItem.color = 'rgb('+ red +','+ blue +','+ green +')'; 
+} 
+}); 
+} 
+function drawSpecialRound(){ 
+console.log('used drawSpecialRound'); 
+possible(); 
+setInterval(drawKolo,100); 
+document.getElementById("negr").addEventListener("mousemove", function(event){ 
+Coord(event) 
+}); 
+document.getElementById("negr").addEventListener("click", function(event){ 
+Color(event) 
+}); 
+} 
+</script> 
+</head> 
+<body onload= "drawSpecialRound();" BACKGROUND="Images,CSS/Klitinka.jpg"> 
+<a href="index.html">Індекс</a><p>
+<canvas id = "negr" width = "600" height = "600"  > 
+</canvas> 
+</body> 
+</html>

@@ -1,0 +1,1224 @@
+<html>
+<head>
+<link rel="shortcut icon" href="Images,CSS/Javascript.png">
+<link href="style.css" rel="stylesheet">
+<script type="text/javascript">
+// Лінія
+function drawLine(){
+var canvas=document.getElementById("negr");
+var ctx=canvas.getContext("2d");
+ctx.fillStyle='rgba(200,0,0,0.6)';
+ctx.beginPath();
+ctx.moveTo(70,70);
+ctx.lineTo(150,150);
+ctx.lineWidth=10;
+ctx.stroke();
+var gl=ctx.createliner
+}
+// Текст
+function drawText() { 
+var canvas = document.getElementById ("negr"); 
+if (canvas.getContext) { 
+var ctx =canvas.getContext ("2d"); 
+ctx.font="bold 42px impact";
+ctx.fillStyle = "rgba(145,255,35, 1.0)"; 
+ctx.font = "bold 42px sans-serif"; 
+ctx.textBaseline="middle" 
+ctx.fillText ("CHECKTEXT",300,200); 
+} 
+}
+// Картинка
+function drawImage(){
+var canvas=document.getElementById("negr");
+var ctx=canvas.getContext("2d");
+var img=new Image();
+img.src="Images,CSS/Kit.jpg";
+img.onload= function(){
+ctx.drawImage(img,0,0,800,600);
+};
+}
+// Квадрат
+function drawRect(){
+var canvas=document.getElementById("negr");
+var ctx=canvas.getContext("2d");
+ctx.fillStyle="rgb(0,0,99,1)";
+ctx.fillRect(10,10,100,100);
+}
+// Коло
+function drawRound(){
+var canvas= document.getElementById ("negr"); 
+var ctx = canvas.getContext('2d'); 
+ctx.beginPath(); 
+ctx.arc(250,250,245,0,Math.PI*2); 
+ctx.lineWidth=10;
+ctx.stroke();
+}
+// Людина
+let canvas,ctx; 
+const width=600; 
+const height=400; 
+let cholovichok= {}; 
+function clear(){ 
+ctx.clearRect(0,0,width,height); 
+} 
+function startLoad() { 
+var img = new Image(); 
+img.src = "Images,CSS/chelovek.jpg"; // Отримую зображення
+cholovichok.images=img; // Вказую що треба вирізати
+cholovichok.action=0; 
+cholovichok.width=100; 
+cholovichok.height=100; 
+cholovichok.count=5; 
+}
+function drawCanvas() { 
+clear(); 
+ctx.drawImage(cholovichok.images,0,(cholovichok.action*cholovichok.height),cholovichok.width,cholovichok.height, 250,100,cholovichok.width,cholovichok.height); 
+cholovichok.action++; 
+if(cholovichok.action==cholovichok.count){ 
+cholovichok.action=0; 
+} 
+} 
+function drawHuman(){ 
+ctx= document.getElementById('negr').getContext('2d'); 
+startLoad(); 
+drawCanvas(); 
+setInterval(drawCanvas,150);                                                                                                                                                                                                                                                                                        
+}
+// Рухома картинка
+let negr,ctx;
+const width = 1150;
+const height = 600;
+let bgImage;
+let bgMoveX = 528;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+function startLoad() {
+	bgImage = new Image();
+	bgImage.src = "Images,CSS/lawa.jpg";
+}	
+function drawCanvas() {
+	clear();
+	bgMoveX -= 4;
+	if(bgMoveX <= 0){
+		bgMoveX	= 640; // Починаю заново
+	}
+	ctx.drawImage(bgImage,0+bgMoveX,0,490,475,0,0,width,height);
+}
+function drawLawa() {
+	ctx = document.getElementById('negr').getContext('2d');
+	startLoad();
+	drawCanvas();
+	setInterval(drawCanvas,70);
+}
+// Продукти
+// Картинка в рамці 
+function drawImageinframe(){
+var canvas=document.getElementById("negr");
+var ctx=canvas.getContext("2d");
+var img1=new Image();
+img1.src="Images,CSS/Frame.jpg";
+img1.onload= function(){
+ctx.drawImage(img1,10,10,150,150);
+};
+var img=new Image();
+img.src="Images,CSS/Kit.jpg";
+img.onload= function(){
+ctx.drawImage(img,20,20,70,50,30,40,110,90);
+};
+}
+// Мигаючий квадрат
+function drawFlashingrect() { 
+var i = 0; 
+var id = document.getElementById ("negr"); 
+var ctx = id.getContext('2d'); 
+if (i < 3){ 
+setInterval(function(){ 
+var red=parseInt(Math.random()*255);
+var green=parseInt(Math.random()*255);
+var blue=parseInt(Math.random()*255);
+console.log(red,green,blue);
+ctx.fillStyle="rgb("+red+","+green+","+blue+")";
+ctx.fillRect(10,10,100,100);
+i++; 
+},2000) 
+} 
+}
+// Мигаючий текст
+function drawFlashingtext() { 
+var i = 0; 
+var id = document.getElementById ("negr"); 
+var ctx = id.getContext('2d'); 
+if (i < 3){ 
+setInterval(function(){ 
+var x = Math.random()*id.width-200; 
+var y = Math.random()*id.height-100; 
+var red=parseInt(Math.random()*255);
+var green=parseInt(Math.random()*255);
+var blue=parseInt(Math.random()*255);
+console.log(red,green,blue);
+ctx.fillStyle="rgb("+red+","+green+","+blue+")";
+ctx.font = "bold 42px sans-serif" ; 
+ctx.clearRect(0,0,id.width,id.height); 
+ctx.fillText("CHECKTEXT",x,y); 
+i++; 
+},500) 
+} 
+} 
+// Xрестики-нолики
+var ctx;
+var step=1;
+function drawTictactoe(){
+ ctx=document.getElementById ("negr").getContext('2d');
+var idInterval=setInterval(drawCanvas,1000)
+}
+function drawCanvas(){ 
+var i = 0; 
+var canvas= document.getElementById ("negr"); 
+var ctx = canvas.getContext('2d'); 
+if(step==1){}
+switch(step){
+case 1: // Case рядок виконання
+ctx.fillStyle='rgba(200,0,0,0.6)'; 
+ctx.beginPath(); 
+ctx.moveTo(115,150); 
+ctx.lineTo(380,150); 
+ctx.lineWidth=3; 
+ctx.stroke(); 
+ctx.fillStyle='rgba(200,0,0,0.6)'; 
+ctx.beginPath(); 
+ctx.moveTo(115,250); 
+ctx.lineTo(380,250); 
+ctx.lineWidth=3; 
+ctx.stroke(); 
+ctx.fillStyle='rgba(200,0,0,0.6)'; 
+ctx.beginPath(); 
+ctx.moveTo(300,330); 
+ctx.lineTo(300,65); 
+ctx.lineWidth=3; 
+ctx.stroke(); 
+ctx.fillStyle='rgba(200,0,0,0.6)'; 
+ctx.beginPath(); 
+ctx.moveTo(200,330); 
+ctx.lineTo(200,65); 
+ctx.lineWidth=3; 
+ctx.stroke(); 
+break; // Закриваємо рядок
+case 2:
+ctx.beginPath(); 
+ctx.arc(250,200,25,0,Math.PI*2); 
+ctx.stroke();
+break;
+case 3:
+ctx.strokeStyle = 'rgb (250,0,0)'; 
+ctx.beginPath(); 
+ctx.moveTo(115,65); 
+ctx.lineTo(200,150); 
+ctx.moveTo(200,65); 
+ctx.lineTo(115,150); 
+ctx.lineCap = "round"; 
+ctx.stroke(); 
+ctx.closePath();
+break;
+case 4:
+ctx.beginPath(); 
+ctx.arc(150,200,25,0,Math.PI*2); 
+ctx.stroke();
+break;
+case 5:
+ctx.strokeStyle = 'rgb (250,0,0)'; 
+ctx.beginPath(); 
+ctx.moveTo(200,65); 
+ctx.lineTo(300,150); 
+ctx.moveTo(200,150); 
+ctx.lineTo(300,65); 
+ctx.lineCap = "round"; 
+ctx.stroke(); 
+ctx.closePath();
+break;
+case 6:
+ctx.beginPath(); 
+ctx.arc(350,200,25,0,Math.PI*2); 
+ctx.stroke();
+break;
+case 7:
+var gl=ctx.createliner 
+var ctx=canvas.getContext("2d");
+ctx.fillStyle='rgba(200,0,0,0.6)';
+ctx.beginPath();
+ctx.moveTo(115,200);
+ctx.lineTo(380,200);
+ctx.stroke();
+break;
+}
+if(step==7) // Тут вказувати скільки кроків треба виконати
+step=1;
+else step++;
+}
+//Мигаюче коло
+window.onload = setInterval(function(){ 
+clear(); 
+drawFlashingRound(); 
+},500); 
+var circle = { x:300, 
+y:200, 
+r:30, 
+a:false 
+} 
+function drawFlashingRound(){ 
+ctx=document.getElementById ("negr").getContext("2d"); 
+if(circle.a){ 
+ctx.fillStyle="red"; 
+ctx.beginPath(); 
+ctx.arc(circle.x,circle.y,circle.r,0,Math.PI*2); 
+ctx.fill(); 
+}else{ 
+ctx.fillStyle="green"; 
+ctx.beginPath(); 
+ctx.arc(circle.x,circle.y,circle.r+20,0,Math.PI*2); 
+ctx.fill(); 
+} 
+circle.a = !circle.a;
+}
+function Coord(e) { // Виводимо в консоль
+var x = e.clientX; 
+var y = e.clientY; 
+console.log('client x-',x);
+console.log('client y-',y);
+} 
+function clear() { // Очищаємо канвас
+var ctx = document.getElementById('negr').getContext('2d'); 
+ctx.clearRect(0,0,800,500); 
+}
+// Мигаючі і мандруючі кола
+var id=setInterval(
+function MovingRound() { 
+var ctx = document.getElementById('negr').getContext('2d'); 
+function clear(){ 
+ ctx.clearRect(0,0,600,600);
+ }  
+ clear()
+for(i=1;i<4;i++){ 
+var x = parseInt(Math.random() * 600); 
+var y = parseInt(Math.random() * 600); 
+var red = parseInt(Math.random() * 255); 
+var green = parseInt(Math.random() * 255); 
+var blue = parseInt(Math.random() * 255); 
+ctx.fillStyle = "rgb("+ red +","+ blue +","+ green +")"; 
+ctx.beginPath(); 
+ctx.arc(x,y,80,0, Math.PI*2); 
+ctx.closePath(); 
+ctx.fill(); 
+} 
+} 
+, 2000); 
+// Особливі кола
+var kolo=[]; 
+function clear(){ 
+ctx.clearRect(0,0,600,600); 
+} 
+function possible() { 
+console.log('using possible'); 
+let count = Math.floor(Math.random()*8+1); 
+for( let i=0;i<count;i++){ 
+let red = parseInt(Math.random() * 255); 
+let green = parseInt(Math.random() * 255); 
+let blue = parseInt(Math.random() * 255); 
+let x = Math.floor(Math.random()*600); 
+let y = Math.floor(Math.random()*600); 
+kolo.push({ 
+coordX:x, 
+coordY:y, 
+radius:20, 
+color:'rgb('+ red +','+ blue +','+ green +')', 
+a:false 
+}); 
+} 
+for( let i=0;i<kolo.length;i++){ 
+console.log(kolo[i]); 
+} 
+} 
+function isMouseInCircle(mouseX,mouseY,circleItem){ 
+return Math.pow(mouseX-circleItem.coordX,2)+Math.pow(mouseY-circleItem.coordY,2) 
+<Math.pow(circleItem.radius,2) 
+} 
+function Coord(e) { 
+let x = e.pageX; 
+let y = e.pageY; 
+let aa =document.getElementById("negr").getBoundingClientRect(); 
+let mouseX = x-aa.left; 
+let mouseY = y-aa.top; 
+kolo.forEach(function(koloMas,index,kolo){ 
+if (Math.pow(mouseX-koloMas.coordX,2)+Math.pow(mouseY-koloMas.coordY,2) 
+<Math.pow(koloMas.radius,2)){ 
+koloMas.a=true; 
+} 
+else{koloMas.a=false; 
+} 
+}); 
+} 
+function drawKolo() { 
+console.log('used drawKolo'); 
+ctx=document.getElementById("negr").getContext('2d'); 
+clear(); 
+kolo.forEach(function(koloZnach,index,kolo){ 
+if(koloZnach.a){ 
+ctx.fillStyle=koloZnach.color; 
+ctx.beginPath(); 
+ctx.arc(koloZnach.coordX,koloZnach.coordY,koloZnach.radius+20,0,Math.PI*2,true); 
+ctx.closePath(); 
+ctx.fill(); 
+}else{ 
+ctx.fillStyle=koloZnach.color; 
+ctx.beginPath(); 
+ctx.arc(koloZnach.coordX,koloZnach.coordY,koloZnach.radius,0,Math.PI*2,true); 
+ctx.closePath(); 
+ctx.fill(); 
+}; 
+}) 
+}; 
+function Colora(e){ 
+let x = e.pageX; 
+let y = e.pageY; 
+let aa = document.getElementById("negr").getBoundingClientRect(); 
+let mouseX = x-aa.left; 
+let mouseY = y-aa.top; 
+let red = parseInt(Math.random() * 255); 
+let green = parseInt(Math.random() * 255); 
+let blue = parseInt(Math.random() * 255); 
+kolo.forEach(function(circleItem){ 
+if(isMouseInCircle(mouseX,mouseY,circleItem)) { 
+circleItem.color = 'rgb('+ red +','+ blue +','+ green +')'; 
+} 
+}); 
+} 
+function drawSpecialRound(){ 
+console.log('used drawSpecialRound'); 
+possible(); 
+setInterval(drawKolo,100); 
+document.getElementById("negr").addEventListener("mousemove", function(event){ 
+Coord(event) 
+}); 
+document.getElementById("negr").addEventListener("click", function(event){ 
+Colora(event) 
+}); 
+} 
+// Чоловічок на лаві
+let negr,ctx;
+const width = 1150;
+const height = 600;
+let bgImage;
+let bgMoveX = 528;
+let sprites = {}; // Створюю об'єкт
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+function startLoad() {
+	bgImage = new Image();
+	bgImage.src = "Images,CSS/lawa.jpg"; // Шлях до лави
+	var img = new Image();
+	img.src = "Images,CSS/person.png"; // Шлях до людини
+	sprites.images = img;
+	sprites.action = 0;
+	sprites.width = 100; // Режу картинку по х на 100
+	sprites.height = 100; // Режу картинку по у на 100
+	sprites.count = 5; // Число фрагментів 5
+}	
+function drawCanvas() {
+	clear();
+	bgMoveX -= 4; // На 4 крок пересування лави
+	if(bgMoveX <= 0){
+		bgMoveX	= 640;
+	}
+	ctx.drawImage(bgImage,0+bgMoveX,0,490,475,0,0,width,height);
+	ctx.drawImage(sprites.images,0,(sprites.action * sprites.height),sprites.width,sprites.height,600,500,sprites.width,sprites.height);	
+	sprites.action++; // Збільшую номер фрагмента на 1
+	if(sprites.action == sprites.count) { // Якщо число фрагментів = 5 то перетворюється на 0
+		sprites.action = 0;
+	}
+}
+function drawLawaHuman() {
+	ctx = document.getElementById('negr').getContext('2d');
+	startLoad();
+	drawCanvas();
+	setInterval(drawCanvas,70);
+}
+// Дракон рухається за мишкою
+let I=20
+let canvas,ctx;
+const width = 1150;
+const height = 600;
+let bgImage;
+let bgMoveX = 528;
+let dracon = {};
+let mouseMoveX = 300;
+let mouseMoveY = 500;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+function startLoad() {
+		bgImage = new Image();
+	bgImage.src = "Images,CSS/lawa.jpg";
+	var img = new Image();
+	img.src = "Images,CSS/dragon.gif";
+	dracon.images = img;
+	//dracon.action = 0;
+	dracon.x = 500;
+	dracon.y = 300;
+	dracon.width = 75;
+	dracon.height = 70;
+	dracon.row = 4;
+	dracon.col = 1;
+	//dracon.count = 10;
+}
+function drawCanvas() {
+	clear();
+		bgMoveX -= 4;
+	if(bgMoveX <= 0){
+		bgMoveX	= 640;
+	}
+	ctx.drawImage(bgImage,0+bgMoveX,0,490,475,0,0,width,height);
+	if(mouseMoveX > dracon.x){
+		dracon.x += 5;
+	}
+	if(mouseMoveY > dracon.y){
+		dracon.y += 5;
+	}
+	if(mouseMoveX < dracon.x){
+		dracon.x -= 5;
+	}
+	if(mouseMoveY < dracon.y){
+		dracon.y -= 5;
+	}
+	dracon.col++;
+	if(dracon.col >= 9) {
+		dracon.col = 0;
+	}
+	ctx.drawImage(dracon.images,
+	(dracon.col * dracon.width),
+	(dracon.row * dracon.height),
+	dracon.width,dracon.height,
+	(dracon.x - dracon.width /2),
+	(dracon.y - dracon.height/2),
+	dracon.width,dracon.height);	
+}
+function drawDragon() {
+	ctx = document.getElementById('negr').getContext('2d');
+	startLoad();
+	drawCanvas();
+	window.canvasCoord = document.getElementById('negr').getBoundingClientRect();
+	document.getElementById('negr').addEventListener('mousemove', (event) => { // Добавляю подію руху мишкою
+			let x = event.clientX;
+			let y = event.clientY;
+			let mouseX = x - canvasCoord.left;
+			let mouseY = y - canvasCoord.top;
+			mouseMoveX = mouseX;
+			mouseMoveY = mouseY;
+			if(mouseX > dracon.x && Math.abs(mouseY - dracon.y) < dracon.width / 2){ // Встановлюю пози дракона
+				dracon.row = 0;
+			}else if(mouseX < dracon.x && Math.abs(mouseY - dracon.y) < dracon.width / 2){
+				dracon.row = 4;
+			}else if(mouseY > dracon.y && Math.abs(mouseX - dracon.x) < dracon.width / 2){
+				dracon.row = 2;	
+			}else if(mouseY < dracon.y && Math.abs(mouseX - dracon.x) < dracon.width / 2){
+				dracon.row = 6;
+			}else if(mouseY < dracon.y && mouseX < dracon.x){
+				dracon.row = 5;
+			}else if(mouseY < dracon.y && mouseX > dracon.x){
+				dracon.row = 7;
+			}else if(mouseY > dracon.y && mouseX < dracon.x){
+				dracon.row = 3
+			}else if(mouseY > dracon.y && mouseX > dracon.x){
+				dracon.row = 1;		
+			}
+		});
+setInterval(drawCanvas,I);
+}
+// Квадрат що ходить за стрілками
+krok=3; 
+let canvas, ctx; 
+const width = 600; 
+const height = 400; 
+let object = { 
+coordX: 280, 
+coordY: 120, 
+width: 20, 
+height: 20, 
+color: "rgba(255,255,25,1)" 
+} 
+function clear() { 
+ctx.clearRect(0, 0, width, height); 
+} 
+function drawCanvas() { 
+clear(); 
+ctx.beginPath; 
+ctx.fillStyle = object.color; 
+ctx.fillRect(object.coordX, object.coordY, object.width, object.height); 
+ctx.closePath(); 
+ctx.fill(); 
+} 
+function drawMovingRect() { 
+ctx = document.getElementById('canvas').getContext('2d'); 
+drawCanvas(); 
+let minX = 0; 
+let maxX = width - object.width; 
+let minY = 0; 
+let maxY = height - object.height; 
+document.onkeydown = function(e){ 
+console.log("keyCode -" + e.keyCode); // Вивожу кількість нажатих стрілок
+switch(e.keyCode){ 
+case 38: 
+if((object.coordY - krok) > minY){ 
+object.coordY = object.coordY - krok; 
+}else{ 
+object.coordY = minY; 
+} 
+break; 
+case 40: 
+if((object.coordY + krok) < maxY){ 
+object.coordY = object.coordY + krok; 
+}else{ 
+object.coordY = maxY; 
+} 
+break; 
+case 37: 
+if((object.coordX - krok) > minX){ 
+object.coordX = object.coordX - krok; 
+}else{ 
+object.coordX = minX; 
+} 
+break; 
+case 39: 
+if((object.coordX + krok) < maxX){ 
+object.coordX = object.coordX + krok; 
+}else{ 
+object.coordX = maxX; 
+} 
+break; 
+} 
+} 
+setInterval(drawCanvas,30); 
+}
+// Арканоід 1 рівень
+let canvas, ctx; 
+let width = 800; 
+let height = 550; 
+var Pad = { // Елемент подушки
+x: width/2-60, 
+y: height-20, 
+w: 120, 
+h: 20, 
+}; 
+var Ball = { // Елемент мяча
+x: width/2, 
+y: height-Pad.h-20, 
+r: 10 
+}; 
+var Bricks = []; // Ввожу масив
+var colors = ['#9d9d9d','#f80207','#feff01','#0072ff','#fc01fc','#03f303']; 
+function drawCanvas(){ 
+clear(); 
+ctx.fillStyle='#f66'; 
+ctx.beginPath(); 
+ctx.arc(400,517,10,0,Math.PI*2); 
+ctx.closePath(); 
+ctx.fill(); 
+var img=new Image(); 
+img.src="Images,CSS/Arcade.jpg"; 
+img.onload= function(){ 
+ctx.drawImage(Pad.img,Pad.x,Pad.y); 
+}; 
+Bricks.forEach(function(item){ // item це елемент масиву Bricks
+ctx.fillStyle = item.color; 
+ctx.beginPath(); 
+ctx.rect(item.x, item.y, item.width, item.height); 
+ctx.closePath(); 
+ctx.fill(); 
+}); 
+} 
+function clear(){ 
+ctx.clearRect(0,0,800,550); 
+} 
+function startLoad () { 
+var padImage = new Image (); 
+padImage.src = "Images,CSS/Arcade.jpg"; 
+Pad.img = padImage; 
+padImage.onload = function () { 
+ctx.drawImage(Pad.img, Pad.x, Pad.y); 
+} 
+} 
+brickWidth = width/8-2; 
+brickHeight = 20; 
+for (var i = 0; i < 8; i++){ 
+brickX = i * ( brickWidth + 2) + 1; 
+for (var j = 0; j < 5; j++){ 
+brickY = j * (brickHeight + 2) + 1; 
+brickColor = colors [ j ]; 
+Bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, color:brickColor}); // Push це додавання елеметів
+} 
+function drawArcanoid(){ 
+ctx = document.getElementById('canvas').getContext('2d'); 
+startLoad(); 
+drawCanvas(); 
+} 
+// Арканоїд з рухаючиюся подушкою
+window.onload = start; 
+let ctx; 
+let width = 800; 
+let height = 550; 
+let Brickscount = 8; // Число прямокутників в ширину
+let Brickscountdown = 8; // Число прямокутників в висоту
+let pad ={ 
+x:width/2-60, 
+y:height-20, 
+w:120, 
+h:20, 
+}
+let ballStart;
+let keyRight = false; 
+let keyLeft = false; 
+var Bricks = []; 
+var colors = ['#9d9d9d','#f80207','#feff01','#0072ff','#fc01fc','#03f303','#049096','#585792']; // Кольори для блоків
+function clear() { 
+ctx.clearRect(0,0,width,height); 
+} 
+function drawCanvas() { 
+clear(); 
+if(keyRight){ 
+if( (pad.x + 10) <= (width - pad.w) ){ 
+pad.x += 10; 
+}else{ 
+pad.x = width - pad.w; 
+} 
+} 
+if(keyLeft){ 
+if( (pad.x - 10) >= 0 ){ 
+pad.x -= 10; 
+}else{ 
+pad.x = 0; 
+} 
+} 
+ctx.drawImage(pad.img,pad.x,pad.y); 
+Bricks.forEach(function(item){ 
+ctx.fillStyle = item.color; 
+ctx.beginPath(); 
+ctx.rect(item.x, item.y, item.width, item.height); 
+ctx.closePath(); 
+ctx.fill(); 
+}); 
+} 
+function startLoad() { 
+let padImage = img = new Image(); 
+padImage.src = "Images,CSS/Arcade.jpg"; 
+pad.img = padImage; 
+padImage.onload = function(){ 
+ctx.drawImage(pad.img, pad.x, pad.y); 
+} 
+} 
+brickWidth = width/Brickscount-2; 
+brickHeight = 20; 
+for (var i = 0; i < 8; i++){ 
+brickX = i * ( brickWidth + 2) + 1; 
+for (var j = 0; j < Brickscountdown; j++){ 
+brickY = j * (brickHeight + 2) + 1; 
+brickColor = colors [ j ]; 
+Bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, color:brickColor}); // Push це додавання прямокутників
+} 
+} 
+function start() { 
+ctx = document.getElementById('canvas').getContext('2d'); 
+startLoad(); 
+clear(); 
+document.onkeydown = function(e){ // Функція для нажимання клавіш
+switch(e.keyCode){ 
+case 37:{  
+keyLeft = true; 
+} 
+break; 
+case 39:{ 
+keyRight = true; 
+} 
+break; 
+} 
+} 
+document.onkeyup = function(e){ 
+switch(e.keyCode){ 
+case 37:{ 
+keyLeft = false; 
+} 
+break; 
+case 39:{ 
+keyRight = false; 
+} 
+break; 
+} 
+} 
+document.getElementById('canvas').addEventListener('mousemove', function(e){ 
+let x = e.clientX; 
+window.canvasCoord = document.getElementById('canvas').getBoundingClientRect(); 
+let mouseX = x - canvasCoord.left; 
+if(mouseX > (pad.w/2)){ 
+if(mouseX < (width - pad.w/2)){ 
+pad.x = mouseX-pad.w/2; 
+}else{ 
+pad.x = width - pad.w; 
+} 
+}else{ 
+pad.x = 0; 
+} 
+});
+setInterval(drawCanvas,10); 
+}
+// Арканоїд з рухаючиюся подушкою і збиваючим мячем
+window.onload = drawArcanoid; 
+let ctx; 
+let width = 800; 
+let height = 550; 
+let pad ={
+	x:width/2-60,
+	y:height-20,
+	w:120,
+	h:20	
+}
+let bricks = [];
+let colors = ['#9d9d9d', '#f80207', '#feff01', '#0072ff', '#fc01fc', '#03fe03']; // Кольори для блоків
+let ball = {
+	x:width/2,
+	y:height-pad.h-20,
+	r:10,
+	dx:0.5,
+	dy:-7
+}
+let keyRight = false;
+let keyLeft = false;
+let ballStart;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+let gamePoints = 0;
+let gameTimer = 0;
+let gameSounds = [];
+let iTimer;
+function startLoad() { 	
+	let padImage = img = new Image();
+	padImage.src = "Images,CSS/Arcade.jpg";
+	pad.img = padImage;
+	padImage.onload = function(){
+		ctx.drawImage(pad.img, pad.x, pad.y);
+}
+let row = 6;
+let col = 8;
+let brickSet = true;
+let brickWidth = width / col - 2;
+let brickHeight = 20;
+	for (let i = 0; i<col; i++){
+		brickX = i * (brickWidth + 2) +1;
+		for (let j = 0; j< row; j++){
+			brickY = j * (brickHeight + 2) +1;
+			brickColor = colors[ j ];
+			bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, colors:brickColor, set:brickSet});
+		}
+	}
+}
+function drawCanvas() {
+clear();
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+bricks.forEach( function(item){
+	ctx.fillStyle = item.colors;
+	ctx.beginPath(); 
+	ctx.rect(item.x,item.y,item.width, item.height); 
+	ctx.closePath();
+	if(item.set) ctx.fill(); 
+	if(ball.y < item.y + item.height && ball.y > item.y && ball.x < item.x + item.width && ball.x > item.x && item.set){
+		item.set = false;
+		ball.dy = - ball.dy;
+		setRect = false;
+		gamePoints++;
+		if( gamePoints >= 8*6) {
+			clearInterval(ballStart);
+			clear();
+			ctx.font = '42px Verdana';
+			ctx.fillStyle = '#fff';
+			ctx.textAligh = 'center';
+			ctx.fillText('GAME OVER! Congratulations!', 400, 275);
+		}
+	}
+})
+	if(keyRight){
+		if( (pad.x + 10) <= (width - pad.w) ){
+			pad.x += 10;
+		}else{
+			pad.x = width - pad.w;
+		}
+	}
+	if(keyLeft){
+		if( (pad.x - 10) >= 0 ){
+			pad.x -= 10;
+		}else{
+			pad.x = 0;
+		}
+	}
+	ctx.drawImage(pad.img,pad.x,pad.y);
+	ball.x += ball.dx;
+	ball.y += ball.dy;
+	if( (ball.x + ball.dx + ball.r) > width || (ball.x + ball.dx - ball.r) < 0){
+		ball.dx = - ball.dx;
+	}
+	if ( (ball.y + ball.dy - ball.r) < 0){
+		ball.dy = - ball.dy;
+	}else if (ball.y + ball.dy + ball.r > height - pad.h){
+		if(ball.x > pad.x && ball.x < pad.x + pad.w){
+			ball.dx = 10 * ((ball.x-(pad.x + pad.w/2)) / pad.w);
+				ball.dy = - ball.dy;
+		}else if (ball.y + ball.dy + ball.r > height){
+			clearInterval(ballStart);
+		}
+	}
+}
+function drawArcanoid() {
+	ctx = document.getElementById('canvas').getContext('2d');
+	startLoad();
+	clear();
+	document.getElementById('canvas').addEventListener('mousemove', function(e){
+		let x = e.clientX;
+		window.canvasCoord = document.getElementById('canvas').getBoundingClientRect();
+		let mouseX = x - canvasCoord.left;
+		if(mouseX > (pad.w/2)){
+			if(mouseX < (width - pad.w/2)){
+				pad.x = mouseX-pad.w/2;
+			}else{
+				pad.x = width - pad.w;
+			}
+		}else{
+			pad.x = 0;
+		}
+	});
+document.onkeydown = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = true;
+		}
+		break;
+		case 39:{
+			keyRight = true;
+		}
+		break;
+}
+}
+document.onkeyup = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = false;
+		}
+		break;
+		case 39:{
+			keyRight = false;
+		}
+		break;
+}
+}
+ballStart = setInterval(drawCanvas,20);
+}
+// Сталкер 1 рівень
+window.onload = drawStalker; 
+let canvas,ctx; 
+let width = 720; 
+let height = 480; 
+let keyRight = false;
+let keyLeft = false;
+let keyUp = false;
+let keyDown = false;
+let keySpace = false;
+let lastFire;
+let startLoad = 0;
+let endLoad = 0;
+let objectImage, bgImage;
+let bg;
+let player = {};
+let playerSpeed = 0.2;
+let bullet = [];
+let bulletSpeed = 0.5;
+function clear() {
+	ctx.clearRect(0,0,width,height);
+}
+function startLoadData() { 
+	startLoad++;
+	objectImage = img = new Image();
+	objectImage.src = "Images,CSS/sprites.png";
+	objectImage.onload = function(){
+		endLoadData();
+	}
+	startLoad++;
+	bgImage = img = new Image();
+	bgImage.src = "Images,CSS/terrain.png";
+	bgImage.onload = function(){
+		endLoadData();
+	}
+	player = {
+		x:10,
+		y:279,
+		w:39,
+		h:39,
+		row:0,
+		col:0,
+		count:2,
+		action:0
+	};
+} 
+function endLoadData (){
+	endLoad++;
+	if(startLoad == endLoad){
+		start();
+	}
+}
+function start(){
+	bg = ctx.createPattern(bgImage, 'repeat');
+	lastTime = Date.now();
+	lastFire = Date.now();
+	main();
+}
+function main() {
+	clear();
+	times = Date.now();
+	dt = times - lastTime;
+	ctx.fillStyle = bg; 
+	ctx.fillRect(0, 0, width, height);
+	setKey(dt);
+	drawPlayer(dt);
+	//drawBullet(dt);
+	lastTime = times;
+	requestAnimFrame(main);
+}
+function setKey (dt){
+	if(keyLeft){
+		player.x -= playerSpeed * dt;
+		if(player.x < 0){
+			player.x = 0;
+		}
+	}
+	if(keyRight){
+		player.x += playerSpeed * dt;
+		if(player.x > (width - player.w)){
+			player.x = width - player.w;
+		}
+	}
+	if(keyUp){
+		player.y -= playerSpeed * dt;
+		if(player.y < 0){
+			player.y = 0;
+		}
+	}
+	if(keyDown){
+		player.y += playerSpeed * dt;
+		if(player.y > (height - player.h)){
+			player.y = height - player.h;
+		}
+	}
+	if(keySpace){
+		if(Data.now(0 - lastFire) > 100){
+			let x = player.x + player.w / 2;
+			let y = player.y + player.h / 2;
+
+			bullet.push({x:x, y:y, type: 'forward', row: 39, col: 0, w:18, h: 8});
+			bullet.push({x:x, y:y, type: 'up', row: 50, col: 0, w:9, h: 5});
+			bullet.push({x:x, y:y, type: 'down', row: 60, col: 0, w:9, h: 5});
+
+			lastFire = Data.now();
+		}
+	}
+}
+function drawPlayer(dt){
+	player.action += 1;
+	if(player.action == player.count){
+		player.action = 0;
+	}
+	ctx.drawImage(objectImage, (player.action * player.col), player.row, player.w, player.h,
+		player.x, player.y, player.w, player.h);
+}
+var requestAnimFrame = (function(){
+	return window.requestAnimFrame ||
+			window.webkitrequestAnimFrame ||
+			window.mozrequestAnimFrame ||
+			window.orequestAnimFrame ||
+			window.msrequestAnimFrame || function(callback){
+										window.setTimeout(callback, 1000/60);
+										};
+})();
+function drawCanvas() {
+clear();
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+ctx.fillStyle = "#f56"; 
+ctx.beginPath(); 
+ctx.arc(ball.x,ball.y,ball.r,0,Math.PI * 2, true); 
+ctx.closePath();
+ctx.fill(); 
+bricks.forEach( function(item){
+	ctx.fillStyle = item.colors;
+	ctx.beginPath(); 
+	ctx.rect(item.x,item.y,item.width, item.height); 
+	ctx.closePath();
+	if(item.set) ctx.fill(); 
+	if(ball.y < item.y + item.height && ball.y > item.y && ball.x < item.x + item.width && ball.x > item.x && item.set){
+		item.set = false;
+		ball.dy = - ball.dy;
+		setRect = false;
+		gamePoints++;
+		console.log(gamePoints);
+		if( gamePoints >= player.col*row) {
+			clearInterval(ballStart);
+			clear();
+			ctx.font = '42px Verdana';
+			ctx.fillStyle = 'black';
+			ctx.textAligh = 'center';
+			ctx.fillText('GAME OVER! Congratulations!', 400, 275);
+		}
+	}
+})
+	if(keyRight){
+		if( (pad.x + 10) <= (width - pad.w) ){
+			pad.x += 10;
+		}else{
+			pad.x = width - pad.w;
+		}
+	}
+	if(keyLeft){
+		if( (pad.x - 10) >= 0 ){
+			pad.x -= 10;
+		}else{
+			pad.x = 0;
+		}
+	}
+	ctx.drawImage(pad.img,pad.x,pad.y);
+	ball.x += ball.dx;
+	ball.y += ball.dy;
+	if( (ball.x + ball.dx + ball.r) > width || (ball.x + ball.dx - ball.r) < 0){
+		ball.dx = - ball.dx;
+	}
+	if ( (ball.y + ball.dy - ball.r) < 0){
+		ball.dy = - ball.dy;
+	}else if (ball.y + ball.dy + ball.r > height - pad.h){
+		if(ball.x > pad.x && ball.x < pad.x + pad.w){
+			ball.dx = 10 * ((ball.x-(pad.x + pad.w/2)) / pad.w);
+				ball.dy = - ball.dy;
+		}else if (ball.y + ball.dy + ball.r > height){
+			clearInterval(ballStart);
+		}
+		ctx.font = '16px Verdana';
+		ctx.fillStyle = "black";
+		let gameMin;
+		let gameSec;
+		gameMin = Math.floor(gameTimer/60);
+			gameSec = gameTimer % 60;
+			if (gameMin < 10) gameMin = "0" + gameMin;
+			if (gameSec < 10) gameSec = "0" + gameSec;
+		ctx.fillText('Time: '+ gameMin + ':' + gameSec, 600, 470);
+		ctx.fillText('Points: ' + gamePoints, 600, 500);
+	}
+function countTimer() {
+	gameTimer++;
+}
+}
+let brickSet = true;
+	let brickWidth = width / player.col - 2;
+	let brickHeight = 20;
+	for (let i = 0; i<player.col; i++){
+		brickX = i * (brickWidth + 2) +1;
+		for (let j = 0; j< row; j++){
+			brickY = j * (brickHeight + 2) +1;
+			brickColor = colors[ j ];
+			bricks.push({x:brickX, y:brickY, width:brickWidth, height:brickHeight, colors:brickColor, set:brickSet});
+		}
+	}
+function drawStalker() {
+	ctx = document.getElementById('canvas').getContext('2d');
+	startLoadData();
+document.onkeydown = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = true;
+		}
+		break;
+		case 38:{
+			keyUp = true;
+		}
+		break;
+		case 39:{
+			keyRight = true;
+		}
+		break;
+		case 40:{
+			keyDown = true;
+		}
+		break;
+		case 32:{
+			keySpace = true;
+		}
+		break;
+}
+}
+document.onkeyup = function(e){
+	switch(e.keyCode){
+		case 37:{
+			keyLeft = false;
+		}
+		break;
+		case 38:{
+			keyUp = false;
+		}
+		break;
+		case 39:{
+			keyRight = false;
+		}
+		break;
+		case 40:{
+			keyDown = false;
+		}
+		break;
+		case 32:{
+			keySpace = false;
+		}
+		break;
+}
+}
+}
+</script
+</script>
+</head>
+<body BACKGROUND="Images,CSS/Klitinka.jpg">
+<a href="Line.html">Лінія</a><p>
+<a href="Round.html">Коло</a><p>
+<a href="Text.html">Текст</a><p>
+<a href="Image.html">Картинка</a><p>
+<a href="Rect.html">Квадрат</a><p>
+<a href="Lawa.html">Рухома картинка</a><p>
+<a href="Imageinframe.html">Картинка в рамці</a><p>
+<a href="Flashingrect.html">Мигаючий квадрат</a><p>
+<a href="Flashingtext.html">Мигаючий мандруючий текст</a><p>
+<a href="Tictactoe.html">Хрестики-нолики</a><p>
+<a href="FlashingRound.html">Мигаюче коло</a><p>
+<a href="MovingRound.html">Мигаючі мандруючі кола</a><p>
+<a href="SpecialRound.html">Особливі кола</a><p>
+<a href="Human.html">Людина</a><p>
+<a href="LawaHuman.html">Чоловічок на лаві</a><p>
+<a href="Dragon.html">Дракон</a><p>
+<a href="MovingRect.html">Квадрат що ходить за стрілками</a><p>
+<a href="Arcanoidlevel1.html">Арканоід 1 рівень</a><p>
+<a href="Arcanoidlevel2.html">Арканоід 2 рівень</a><p>
+<a href="Arcanoidlevel3.html">Арканоід 3 рівень</a><p>
+<a href="Stalkerlevel1.html">Сталкер 1 рівень</a><p>
+<a href="Test.html">Тест</a>
+</body>
+</html>
