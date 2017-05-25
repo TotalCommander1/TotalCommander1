@@ -1,0 +1,66 @@
+﻿body{
+	background:#111111;
+	color:white;
+}
+#chStyle a{
+width:10px;
+height:10px;
+text-decoration:none;
+color:white;
+}
+#center{
+	width:100%;
+	min-width:780px;
+	margin-top:-25px;
+}
+td{
+	padding:25px;
+	background:#111111;
+}
+#logo_text{
+	height:10px;
+	font:24px impact;
+	letter-spacing:3px;
+}
+
+#menu a{
+	font:bold 20px tahoma;
+	display:block;
+	margin-bottom:8px;
+	text-decoration:none;
+	color:#909090;
+}
+#menu a:hover{
+	color:#ffffff;
+}
+#menu a.action{
+	color:#ffffff;
+}
+.foto_car img{
+	width:100%;
+}
+
+#content img{
+	width:45%;
+	border:3px solid white;
+	margin:10px 0px 10px 20px;
+}
+#content h1,h2,h3{
+	padding-top:-20px;
+	font-family:verdana;
+	color:#ffffff;
+}
+#content p{
+	color:#f0f0f0;
+	font:16px tahoma;
+	text-align:justify;
+}
+
+
+
+
+
+
+
+
+

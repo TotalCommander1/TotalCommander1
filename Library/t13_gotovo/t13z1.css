@@ -1,0 +1,35 @@
+﻿body{
+	background:#111111;
+	color:white;
+}
+#center{
+	width:100%;
+}
+td{ 
+	padding:25px;
+}
+#logo_text{
+	height:10px;
+	width:25%;
+	font:24px impact;
+	letter-spacing:3px;
+}
+#menu{
+	min-width:150px;
+}
+#menu a{
+	font:bold 20px tahoma;
+	display:block;
+	margin-bottom:18px;
+	text-decoration:none;
+	color:#909090;
+}
+#menu a:hover{
+	color:#ffffff;
+}
+#menu a.action{
+	color:#ffffff;
+}
+.foto_car img{
+	width:100%;
+}

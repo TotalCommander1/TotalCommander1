@@ -1,0 +1,34 @@
+﻿body{
+	background:#111111;	
+	color:#ffffff;
+}
+td{
+	padding:20px;
+}
+#logo{
+	width:10px;
+	height:10px;
+	font:24px impact;
+	letter-spacing:3px;
+}
+#menu a{
+	display:block;
+	text-decoration:none;
+	color:#909090;
+	font:bold 18px tahoma;
+	padding-bottom:16px;
+}
+#menu a:hover{
+	color:#ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
