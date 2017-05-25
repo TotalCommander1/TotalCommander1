@@ -1,0 +1,263 @@
+
+/* І ГОЛОВНІ КОНТЕЙНЕРИ САЙТУ*/
+
+#main /*контейнер всього магазину*/
+{
+	margin:0px auto;
+	border:2px solid black;
+	width:996px;
+	box-shadow:0px 0px 30px #000000;
+}
+
+#top /*контейнер верхньої частини магазину*/
+{
+	position:relative;
+	background:url(Img/header.jpg);
+	background-repeat:no-repeat;
+	width:100%;
+	height:250px;
+	border:0px solid red;
+}
+
+
+#fon_tovar /*контейнер для таблиці товарів*/
+{
+	position:relative;
+	background:#f0f0f0;
+	width:100%;
+	box-shadow:0px 15px 15px black;
+}
+
+
+/* ІІ ВЕРХНЯ ЧАСТИНА МАГАЗИНУ */
+
+/* кнопки меню магазину */
+
+#k1 /* стиль на кнопку "про магазин", файл index.php */
+{
+	cursor:pointer;
+	position:absolute;
+	top:20px;
+	right:360px;
+	width:150px;
+	height:40px;
+	background:url(Img/k1.png);
+	background-repeat:no-repeat;
+	border:1px solid white;
+}
+#k1:hover /* зміна стилю кнопки "про магазин" при наведені мишки, файл index.php */
+{
+	background:url(Img/k2.png);
+	background-repeat:no-repeat;
+}
+
+
+#k2 /* стиль на кнопку "Правила магазину", файл index.php */
+{
+	cursor:pointer;
+	position:absolute;
+	top:20px;
+	right:190px;
+	width:150px;
+	height:40px;
+	background:url(Img/k3.png);
+	background-repeat:no-repeat;
+	border:1px solid white;
+}
+#k2:hover /* зміна стилю кнопки "Правила магазину" при наведені мишки, файл index.php */
+{
+	background:url(Img/k4.png);
+	background-repeat:no-repeat;
+}
+
+
+#k3 /* стиль на кнопку "Контакти (Адреса)", файл index.php */
+{
+	cursor:pointer;
+	position:absolute;
+	top:20px;
+	right:20px;
+	width:150px;
+	height:40px;
+	background:url(Img/k5.png);
+	background-repeat:no-repeat;
+	border:1px solid white;
+}
+#k3:hover /* зміна стилю кнопки "Контакти (Адреса)" при наведені мишки, файл index.php */
+{
+	background:url(Img/k6.png);
+	background-repeat:no-repeat;
+}
+
+
+/* Вибрано товарів (кошик), файл index.php */
+
+#ks /* стиль на кругле зображення магазинного візка, файл index.php */
+{
+	cursor:pointer;
+	width:72px;
+	height:72px;
+	position:absolute;
+	background:url(Img/ks.png);
+	background-repeat:no-repeat;
+	bottom:20px;
+	right:20px;
+	border:0px solid #000000;
+	border-radius:38px;
+	box-shadow:0px 0px 10px #000000;
+}
+
+#vt /* стиль на контейнер у якому записано " вибрано товарів: 0 ", файл index.php */
+{
+	width:164px;
+	height:40px;
+	position:absolute;
+	background:url(Img/vt.png);
+	background-repeat:no-repeat;
+	bottom:22px;
+	right:73px;
+	padding:7px;
+}
+#SelectTovar /* стиль на надпис "вибрано товарів:", файл index.php */
+{
+	font:bold 13px Tahoma;
+	color:blue;
+}
+#ok /* стиль на надпис про вибрану кількість товарів (по замовчуванню 0), файл index.php */
+{
+	padding-top:5px;
+	margin:5px;
+	color:red;
+}
+
+
+
+/* ІІІ ТАБЛИЦЯ З ТОВАРОМ*/
+
+.kosik1  /* "квадратик" вибору товару коли товар не вибраний, файл tovar.php */
+{
+	width:20px;
+	height:20px;
+	background:white;
+	cursor:pointer;
+	margin:10px;
+	box-shadow:0px 0px 20px blue;
+}
+.kosik1:hover  /* "квадратик" коли товар не вибраний при наведені мишки, файл tovar.php  */
+{
+	box-shadow:0px 0px 20px green;
+}
+
+.kosik2   /* "квадратик" коли товар вибраний (цей стиль буде призначений з допомогою 	ф-ції jquery)*/
+{
+	width:20px;
+	height:20px;
+	background:url(Img/wave.png);
+	cursor:pointer;
+	margin:10px;
+	box-shadow:0px 0px 20px green;
+}
+.kosik2:hover
+{
+	box-shadow:0px 0px 20px blue;
+}
+
+#produkt_foto /* стиль на фото товару, файл tovar.php */
+{
+	width:150px;
+	position:relative;
+	padding:20px;
+	border:5px solid green;
+}
+.n_tovar /* стиль на номер товару , файл tovar.php */
+{
+	font:bold 14px arial;
+	color:#006699;
+}
+.name_tovar /* стиль на назву товару, файл tovar.php */
+{
+	font:bold 25px arial;
+	color:blue;
+}
+.help_tovar /* стиль на опис товару, файл tovar.php */
+{
+	font:bold 17px Times New Roman;
+	color:grey;
+}
+.price_tovar /* стиль на ціну товару, файл tovar.php */
+{
+	font:bold 16px tahona;
+	color:red;
+}
+.value_tovar /* стиль на валюту товару (грн), файл tovar.php */
+{
+	font:bold 16px tahona;
+	color:red;
+}
+.pre_tovar  /* стиль на префікс (за 1), файл tovar.php */
+{
+	font:bold 16px tahona;
+	color:green;
+}
+.unit_tovar  /* стиль на одиниці вимірювання (кг, літри, шт ...), файл tovar.php */
+{
+	font:bold 16px tahona;
+	color:green;
+}
+
+.h_w
+{
+	display:none;
+}
+.P_AboutShop{ 
+	text-align:justify;
+}
+.P_Regulations{ 
+	text-align:center;
+	color:#000099;
+	font:bold 16px verdana;
+}
+.Aktsia
+{
+	margin-top:50px;
+	text-align:center;
+	color:red;
+}
+
+/* Для кроку № 4. Накладаємо стиль на рядки таблиці введення даних користувачем під час замовлення товару */
+
+.dani
+{
+	color:#00aa00;
+	text-align:right;
+	padding-right:20px;
+}
+.dani1
+{
+	color:#cc0000;
+	text-align:left;
+	padding-left:50px;
+}
+.iput_data
+{
+	width:100%;
+}
+#zamovutu
+{
+	background:green;
+	color:yellow;
+	font:bold 20px verdana;
+	padding:10px;
+	text-align:center;
+	margin-top:30px;
+	cursor:pointer;
+	border-radius:12px;
+}
+#zamovutu:hover
+{
+	background:white;
+	color:green;
+	border:3px solid green;
+	box-shadow:0px 0px 10px black;
+}
+

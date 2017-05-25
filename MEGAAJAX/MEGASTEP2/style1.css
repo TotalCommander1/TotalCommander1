@@ -1,0 +1,79 @@
+
+.Aktsia
+{
+	color:red;
+}
+.h_w
+{
+	display:none;
+}
+#zamovutu
+{
+	background:green;
+	color:yellow;
+	font:bold 20px verdana;
+	padding:10px;
+	text-align:center;
+	margin-top:30px;
+	cursor:pointer;
+	border-radius:12px;
+}
+#zamovutu:hover
+{
+	background:white;
+	color:green;
+	border:3px solid green;
+	box-shadow:0px 0px 10px black;
+}
+
+#AboutShop
+{
+	color:white;
+	text-align:center;
+	font:bold 20px Arial;
+	
+}
+#Regulations
+{
+	color:white;
+	position:relative;
+	text-align:center;
+	font:bold 20px Arial;
+}
+#Kontakts
+{
+	color:white;
+	text-align:center;
+	font:bold 20px Arial;
+}
+
+
+#text_AboutShop
+{
+	color:black;
+}
+#text_Regulations
+{
+	color:black;
+}
+#text_Kontakts
+{
+	color:black;
+}
+
+.dani
+{
+	color:#00aa00;
+	text-align:right;
+	padding-right:20px;
+}
+.dani1
+{
+	color:#cc0000;
+	text-align:left;
+	padding-left:50px;
+}
+.iput_data
+{
+	width:100%;
+}
